@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Aplicaciones Moviles y Sistems Telematicos"
+            android:text="Aplicaciones Moviles y Servicios Telematicos"
             android:layout_gravity="center_horizontal"/>
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Buscar Heoroes"
-            android:onClick="busqueda"/>
+            android:onClick="buscarHeroe"/>
     </LinearLayout>
 
 </RelativeLayout>
