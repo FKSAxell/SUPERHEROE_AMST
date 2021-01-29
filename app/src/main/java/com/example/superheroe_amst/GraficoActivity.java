@@ -26,91 +26,58 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class GraficoActivity extends AppCompatActivity {
-
-    String name;
-    String fullName;
-    ArrayList<String> nameStats;
-    ArrayList<Integer> valueStats;
-    BarChart barChart;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grafico);
 
-
-
-        name = getIntent().getExtras().getString("nombre");
-        fullName = getIntent().getExtras().getString("nombreCompleto");
-        nameStats = getIntent().getExtras().getStringArrayList("tags");
-        valueStats = getIntent().getExtras().getIntegerArrayList("valores");
-
-
-        barChart = (BarChart) findViewById(R.id.barchart);
-        initBarchart();
-        crearEntries();
-        ((TextView)findViewById(R.id.nombre)).setText(name);
-        ((TextView)findViewById(R.id.nombreCompleto)).setText(fullName);
-
-    }
-
-
-    private void initBarchart(){
+        //parametros de la anterior actividad
+        Bundle parametros = getIntent().getExtras();
+        String nombre = parametros.getString("nombre");
+        String nombreCompleto = parametros.getString("nombreCompleto");
+        ArrayList<String> tags = parametros.getStringArrayList("tags");
+        ArrayList<Integer> valores = parametros.getIntegerArrayList("valores");
+        int cantidad =tags.size();
+        BarChart barChart = (BarChart) findViewById(R.id.barchart);
         barChart.fitScreen();
-        XAxis xAxis = barChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setDrawGridLines(false);
-        xAxis.setLabelRotationAngle(90);
+        XAxis x = barChart.getXAxis();
+        x.setPosition(XAxis.XAxisPosition.BOTTOM);
+        x.setDrawGridLines(false);
+        x.setLabelRotationAngle(90);
         barChart.getAxisLeft().setDrawGridLines(false);
         barChart.animateY(1500);
         barChart.getLegend().setEnabled(false);
 
-        if(nameStats.size() != 0) {
-            String labels[] = new String[nameStats.size()];
+        if(cantidad != 0) {
+            String[] texto = new String[cantidad];
 
-            for (int i = 0; i < nameStats.size(); i++) {
-                labels[i] = nameStats.get(i);
+            for (int i = 0; i < cantidad; i++) {
+                texto[i] = tags.get(i);
             }
 
-            IndexAxisValueFormatter i = new IndexAxisValueFormatter();
-            i.setValues(labels);
-            xAxis.setValueFormatter(i);
+            IndexAxisValueFormatter format = new IndexAxisValueFormatter();
+            format.setValues(texto);
+            x.setValueFormatter(format);
         }
-
-    }
-
-
-
-    private void crearEntries(){
-        System.out.println(valueStats);
-        System.out.println(nameStats);
         ArrayList<BarEntry> barEntries = new ArrayList<>();
-        for(int i = 0; i<valueStats.size(); i++){
-            String name = nameStats.get(i);
-            Integer value = valueStats.get(i);
-            BarEntry barEntry = new BarEntry(i, value);
-            barEntries.add(barEntry);
+        for(int i = 0; i<cantidad; i++){
+            Integer val = valores.get(i);
+            barEntries.add(new BarEntry(i, val));
         }
-        if(barEntries.size() != 0){
-            crearDataset(barEntries);
+        if(cantidad != 0){
+            BarDataSet barDataSet = new BarDataSet(barEntries, "Stats");
+            barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+            barDataSet.setDrawValues(true);
+            ArrayList<IBarDataSet> dataSets = new ArrayList<>();
+            dataSets.add(barDataSet);
+            BarData data = new BarData(dataSets);
+            barChart.setData(data);
+            barChart.setFitBars(true);
         }
+        ((TextView)findViewById(R.id.nombre)).setText(nombre);
+        ((TextView)findViewById(R.id.nombreCompleto)).setText(nombreCompleto);
 
     }
-    private void crearDataset(ArrayList<BarEntry> barEntries){
-        BarDataSet barDataSet = new BarDataSet(barEntries, "Stats Dataset");
-        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        barDataSet.setDrawValues(true);
-        ArrayList<IBarDataSet> dataSets = new ArrayList<>();
-        dataSets.add(barDataSet);
-        BarData data = new BarData(dataSets);
-        barChart.setData(data);
-        barChart.setFitBars(true);
-    }
-
-
-
-
-
 
 
 
