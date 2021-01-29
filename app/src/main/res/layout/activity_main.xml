@@ -40,7 +40,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text=""
-            android:hint="Buscar por nombre"/>
+            android:hint="Busqueda por nombre"/>
 
         <Button
             android:id="@+id/button"
