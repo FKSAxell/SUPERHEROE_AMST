@@ -5,11 +5,12 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GraficoActivity">
+    tools:context=".GraficoActivity"
+    tools:showIn="@layout/activity_grafico">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:theme="@style/Theme.AppCompat.Light">
 
         <androidx.appcompat.widget.Toolbar

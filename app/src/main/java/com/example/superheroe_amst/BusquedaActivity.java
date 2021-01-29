@@ -94,8 +94,6 @@ public class BusquedaActivity extends AppCompatActivity {
 
                             }
                         });
-
-                        textHeroe.setTextColor(Color.BLACK);
                         capa.addView(textHeroe);
                     }
                     ((TextView)findViewById(R.id.cont)).setText("Resultado: " + cantidad );
@@ -107,7 +105,7 @@ public class BusquedaActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 System.out.println(error);
-                Toast.makeText(getApplicationContext(), "Nada que mostrar", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
             }
         });
         queue.add(jsonObjectRequest);
