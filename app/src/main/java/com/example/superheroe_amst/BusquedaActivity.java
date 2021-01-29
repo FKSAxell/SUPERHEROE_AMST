@@ -56,6 +56,7 @@ public class BusquedaActivity extends AppCompatActivity {
                         String nomCompleto=bio.getString("full-name");
 
                         TextView textHeroe = new TextView(getApplicationContext());
+                        System.out.println(nombre);
                         textHeroe.setText(nombre);
                         textHeroe.setClickable(true);
                         textHeroe.setOnClickListener(new View.OnClickListener() {
@@ -83,13 +84,13 @@ public class BusquedaActivity extends AppCompatActivity {
                                     }
 
                                 }
-                                /*Intent grafico_activity = new Intent(getApplicationContext(), GraficoActivity.class);
+                                Intent grafico_activity = new Intent(getApplicationContext(), GraficoActivity.class);
                                 grafico_activity.putIntegerArrayListExtra("valores", valores);
                                 grafico_activity.putStringArrayListExtra("tags", tags);
                                 grafico_activity.putExtra("nombre", nombre);
                                 grafico_activity.putExtra("nombreCompleto", nomCompleto);
 
-                                startActivity(grafico_activity);*/
+                                startActivity(grafico_activity);
 
                             }
                         });

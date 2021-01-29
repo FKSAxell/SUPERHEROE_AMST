@@ -1,23 +1,32 @@
 package com.example.superheroe_amst;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.os.Bundle;
-import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class GraficoActivity extends AppCompatActivity {
+
     String name;
     String fullName;
     ArrayList<String> nameStats;
@@ -28,7 +37,6 @@ public class GraficoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grafico);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -44,6 +52,7 @@ public class GraficoActivity extends AppCompatActivity {
         crearEntries();
         ((TextView)findViewById(R.id.nombre)).setText(name);
         ((TextView)findViewById(R.id.nombreCompleto)).setText(fullName);
+
     }
 
 
@@ -98,4 +107,27 @@ public class GraficoActivity extends AppCompatActivity {
         barChart.setData(data);
         barChart.setFitBars(true);
     }
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
