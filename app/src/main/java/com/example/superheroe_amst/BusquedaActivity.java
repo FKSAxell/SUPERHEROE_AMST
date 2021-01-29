@@ -35,7 +35,7 @@ public class BusquedaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
         queue = Volley.newRequestQueue(this);
-        url = getIntent().getExtras().getString("url");
+        url = getIntent().getExtras().getString("api");
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<JSONObject>() {
 
             @SuppressLint("WrongViewCast")
