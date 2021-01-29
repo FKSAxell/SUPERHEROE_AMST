@@ -63,14 +63,6 @@ public class BusquedaActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View view) {
 
-                                //try {
-
-                                /*} catch (JSONException e) {
-                                    //e.printStackTrace();
-                                    i.putIntegerArrayListExtra("valueStats", new ArrayList<Integer>());
-                                    i.putStringArrayListExtra("nameStats", new ArrayList<String>());
-                                }*/
-
                                 ArrayList<String> tags = new ArrayList<>();
                                 ArrayList<Integer> valores = new ArrayList<>();
                                 Iterator<String> iter1 = stats.keys();
