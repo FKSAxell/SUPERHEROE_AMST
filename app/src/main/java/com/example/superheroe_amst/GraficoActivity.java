@@ -25,7 +25,7 @@ public class GraficoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        name = getIntent().getExtras().getString("name");
+        name = getIntent().getExtras().getString("name");git 
         fullName = getIntent().getExtras().getString("fullName");
         nameStats = getIntent().getExtras().getStringArrayList("nameStats");
         valueStats = getIntent().getExtras().getIntegerArrayList("valueStats");
