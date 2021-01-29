@@ -45,7 +45,7 @@ public class BusquedaActivity extends AppCompatActivity {
                 try {
                     JSONArray arreglo = response.getJSONArray("results");
                     int cantidad=  arreglo.length();
-                    LinearLayout capa = (LinearLayout)findViewById(R.id.Busqueda);
+                    LinearLayout capa = (LinearLayout)findViewById(R.id.busqueda);
                     for(int i = 0; i < cantidad; i++){
 
                         JSONObject registro = (JSONObject) arreglo.get(i);
@@ -97,7 +97,7 @@ public class BusquedaActivity extends AppCompatActivity {
                         textHeroe.setTextColor(Color.BLACK);
                         capa.addView(textHeroe);
                     }
-                    ((TextView)findViewById(R.id.Contador)).setText("Resultado: " + cantidad );
+                    ((TextView)findViewById(R.id.cont)).setText("Resultado: " + cantidad );
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
