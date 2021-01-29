@@ -2,16 +2,19 @@ package com.example.superheroe_amst;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -25,19 +28,24 @@ import java.util.Iterator;
 public class BusquedaActivity extends AppCompatActivity {
     String url;
     RequestQueue queue;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
-
         queue = Volley.newRequestQueue(this);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,getIntent().getExtras().getString("api"), null, new Response.Listener<JSONObject>() {
+        url = getIntent().getExtras().getString("url");
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url, null, new Response.Listener<JSONObject>() {
+
+            @SuppressLint("WrongViewCast")
             @Override
             public void onResponse(JSONObject response) {
+
                 try {
                     JSONArray arreglo = response.getJSONArray("results");
                     int cantidad=  arreglo.length();
-                    LinearLayout capa = (LinearLayout)findViewById(R.id.linealBusqueda);
+                    LinearLayout capa = (LinearLayout)findViewById(R.id.Busqueda);
                     for(int i = 0; i < cantidad; i++){
 
                         JSONObject registro = (JSONObject) arreglo.get(i);
@@ -53,7 +61,7 @@ public class BusquedaActivity extends AppCompatActivity {
                         textHeroe.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent grafico_activity = new Intent(getApplicationContext(), GraficoActivity.class);
+
                                 //try {
 
                                 /*} catch (JSONException e) {
@@ -75,13 +83,13 @@ public class BusquedaActivity extends AppCompatActivity {
                                     }
 
                                 }
-
+                                /*Intent grafico_activity = new Intent(getApplicationContext(), GraficoActivity.class);
                                 grafico_activity.putIntegerArrayListExtra("valores", valores);
                                 grafico_activity.putStringArrayListExtra("tags", tags);
                                 grafico_activity.putExtra("nombre", nombre);
                                 grafico_activity.putExtra("nombreCompleto", nomCompleto);
 
-                                startActivity(grafico_activity);
+                                startActivity(grafico_activity);*/
 
                             }
                         });
@@ -89,23 +97,20 @@ public class BusquedaActivity extends AppCompatActivity {
                         textHeroe.setTextColor(Color.BLACK);
                         capa.addView(textHeroe);
                     }
-                    ((TextView)findViewById(R.id.Contador)).setText("Resultado: " + String.valueOf(cantidad) );
+                    ((TextView)findViewById(R.id.Contador)).setText("Resultado: " + cantidad );
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println(error);
+                Toast.makeText(getApplicationContext(), "Nada que mostrar", Toast.LENGTH_LONG).show();
             }
         });
-        queue.add(request);
-
+        queue.add(jsonObjectRequest);
     }
-
-
-
-
-
-
-
 
 
 }

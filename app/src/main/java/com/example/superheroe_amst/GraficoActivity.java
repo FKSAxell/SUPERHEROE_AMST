@@ -4,8 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
@@ -25,10 +33,10 @@ public class GraficoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        name = getIntent().getExtras().getString("name");git 
-        fullName = getIntent().getExtras().getString("fullName");
-        nameStats = getIntent().getExtras().getStringArrayList("nameStats");
-        valueStats = getIntent().getExtras().getIntegerArrayList("valueStats");
+        name = getIntent().getExtras().getString("nombre");
+        fullName = getIntent().getExtras().getString("nombreCompleto");
+        nameStats = getIntent().getExtras().getStringArrayList("tags");
+        valueStats = getIntent().getExtras().getIntegerArrayList("valores");
 
 
         barChart = (BarChart) findViewById(R.id.barchart);
